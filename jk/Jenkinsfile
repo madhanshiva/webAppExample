@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage ("git clone") {
             steps{
+                deleteDir()
                 git 'https://github.com/madhanshiva/webAppExample.git'
             }
         }
