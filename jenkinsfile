@@ -1,0 +1,22 @@
+pipeline {
+    agent any 
+    stages {
+        stage ("git clone") {
+            steps{
+                git 'https://github.com/madhanshiva/webAppExample.git'
+            }
+        }
+        stage ("maven") {
+            steps{
+                sh 'mvn clean install'
+            }
+        }
+        stage ("deployment") {
+            steps{
+                sh 'cp /var/lib/jenkins/workspace/deployment/target/webappExample.war /opt/apache-tomcat-9.0.93/webapps'
+            }
+        }
+    
+    }
+}
+
